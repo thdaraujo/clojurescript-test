@@ -25,5 +25,5 @@ goog.addDependency("../cljs/core/async.js", ['cljs.core.async'], ['cljs.core.asy
 goog.addDependency("../cljs_http/core.js", ['cljs_http.core'], ['goog.net.XhrIo', 'cljs.core', 'cljs_http.util', 'cljs.core.async', 'goog.net.EventType']);
 goog.addDependency("../cljs_http/client.js", ['cljs_http.client'], ['cljs_http.core', 'no.en.core', 'goog.Uri', 'cljs.core', 'cljs_http.util', 'cljs.core.async', 'clojure.string', 'cljs.reader']);
 goog.addDependency("../om/dom.js", ['om.dom'], ['cljs.core']);
-goog.addDependency("../om/core.js", ['om.core'], ['cljs.core', 'om.dom', 'goog.ui.IdGenerator']);
+goog.addDependency("../om/core.js", ['om.core'], ['goog.dom', 'cljs.core', 'om.dom', 'goog.ui.IdGenerator']);
 goog.addDependency("../acme/core.js", ['acme.core'], ['cljs.core', 'cljs_http.client', 'om.dom', 'cljs.core.async', 'om.core', 'goog.events']);

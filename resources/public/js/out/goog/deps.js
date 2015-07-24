@@ -51,4 +51,9 @@ goog.addDependency("crypt/base64.js", ['goog.crypt.base64'], ['goog.crypt', 'goo
 goog.addDependency("uri/uri.js", ['goog.Uri', 'goog.Uri.QueryData'], ['goog.array', 'goog.string', 'goog.structs', 'goog.structs.Map', 'goog.uri.utils', 'goog.uri.utils.ComponentIndex', 'goog.uri.utils.StandardQueryParam']);
 goog.addDependency("math/long.js", ['goog.math.Long'], []);
 goog.addDependency("async/nexttick.js", ['goog.async.nextTick', 'goog.async.throwException'], ['goog.debug.entryPointRegistry', 'goog.functions']);
+goog.addDependency("dom/browserfeature.js", ['goog.dom.BrowserFeature'], ['goog.userAgent']);
+goog.addDependency("dom/tagname.js", ['goog.dom.TagName'], []);
+goog.addDependency("math/coordinate.js", ['goog.math.Coordinate'], ['goog.math']);
+goog.addDependency("math/size.js", ['goog.math.Size'], []);
+goog.addDependency("dom/dom.js", ['goog.dom', 'goog.dom.Appendable', 'goog.dom.DomHelper'], ['goog.array', 'goog.asserts', 'goog.dom.BrowserFeature', 'goog.dom.NodeType', 'goog.dom.TagName', 'goog.functions', 'goog.math.Coordinate', 'goog.math.Size', 'goog.object', 'goog.string', 'goog.userAgent']);
 goog.addDependency("ui/idgenerator.js", ['goog.ui.IdGenerator'], []);

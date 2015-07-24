@@ -15,10 +15,12 @@
           (>! c (vec widgets))))
     c))
 
+(def app-state
+  (atom {}))
+
 (defn widget [{:keys [name]} owner opts]
   (om/component
    (dom/li nil name)))
-
 
 (defn widget-list [{:keys [widgets]}]
   (om/component
@@ -29,25 +31,29 @@
   (reify
     om/IWillMount
     (will-mount [_]
+                ;; Initialize :widgets to []
                 (om/transact! app [:widgets] (fn [] []))
+                ;; Every opts{:poll-interval} milliseconds get :widgets from server
                 (go (while true
                       (let [widgets (<! (fetch-widgets (:url opts)))]
                         (.log js/console (pr-str widgets))
-                        (om/update! app #(assoc % :widgets widgets)))
+                        (om/update! app [:widgets] widgets))
                       (<! (timeout (:poll-interval opts))))))
     om/IRender
     (render [_]
-            (dom/h1 nil "Widgets")
-            (om/build widget-list app))))
+            (dom/div nil
+                     (dom/h1 nil "Widgets")
+                     (om/build widget-list app)))))
 
 (defn om-app [app owner]
-  (om/component
-   (dom/div nil
-            (om/build widget-box app
-                      {:opts {:url "/widgets"
-                              :poll-interval 2000}}))))
+  (reify
+    om/IRender
+    (render [_]
+            (dom/div nil
+                     (om/build widget-box app
+                               {:opts {:url "/widgets"
+                                       :poll-interval 2000}})))))
 
-(def app-state
-  (atom {}))
+(om/root om-app app-state
+         {:target (. js/document (getElementById "content"))})
 
-(om/root app-state om-app (.getElementById js/document "content"))
